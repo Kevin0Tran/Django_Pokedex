@@ -1,0 +1,101 @@
+.img-fixed {
+    display: inline-block;
+    max-width: none;
+    vertical-align: middle;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    min-height: 100%;
+    color: #404040;
+    font-family: "Fira Sans", "Trebuchet MS", Ubuntu, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none
+}
+
+
+element {}
+
+.icon-pkmn {
+
+    width: 60px;
+    height: 56px;
+
+}
+
+.img-fixed {
+
+    display: inline-block;
+    max-width: none;
+    vertical-align: middle;
+
+}
+
+img {
+
+    border: 0;
+    max-width: 100%;
+    height: auto;
+    font-size: .75rem;
+    color: #a3a3a3;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.sticky-header {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table {
+    margin: 0 auto 1rem;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+th,
+td {
+    padding: 4px 10px
+}
+
+a {
+    color: #2769be;
+    text-decoration: none;
+    transition: color .2s, background-color .2s
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #a42121;
+    text-decoration: underline;
+    outline: 0
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+    height: auto;
+    font-size: .75rem;
+    color: #a3a3a3
+}
+
+.data-table th {
+    padding: 8px 10px;
+    padding-right: 10px;
+    background-color: #ebebe5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.cell-fixed {
+    white-space: nowrap;
+}

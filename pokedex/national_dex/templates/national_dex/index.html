@@ -1,0 +1,54 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'national_dex/css/index.css' %}">
+<table id="pokedex" class="data-table sticky-header block-wide" style="opacity: 1;">
+    <thead>
+        <tr>
+            <th class="sorting" data-sort-type="string">
+                <div class="sortwrap"> </div>
+            </th>
+            <th class="sorting sorting-asc" data-sort-type="int" data-sort-dir="asc">
+                <div class="sortwrap">#</div>
+            </th>
+            <th class="sorting" data-sort-type="string">
+                <div class="sortwrap">Name</div>
+            </th>
+            <th>
+                <div class="sortwrap">Type</div>
+            </th>
+            <th class="sorting" data-sort-type="int" data-sort-default="desc">
+                <div class="sortwrap">Species</div>
+            </th>
+            <th class="sorting" data-sort-type="int" data-sort-default="desc">
+                <div class="sortwrap">Height</div>
+            </th>
+            <th class="sorting" data-sort-type="int" data-sort-default="desc">
+                <div class="sortwrap">Weight</div>
+            </th>
+            <th class="sorting" data-sort-type="int" data-sort-default="desc">
+                <div class="sortwrap">Abilities</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in query_results %}
+        <tr>
+            <td class="cell-num cell-fixed" data-sort-value="1">
+                <picture class="infocard-cell-img">
+                    <img class="img-fixed icon-pkmn"
+                        src="{% get_static_prefix %}/national_dex/sprite/{{item.name}}.avif" alt={{item.name}}
+                        loading=" lazy" width="60" height="60">
+            </td>
+            <td class="cell-num"> {{item.national_number}}. </td>
+            <td class="cell-name"><a class="ent-name" href="/pokedex/{{item.name}}"
+                    title="View Pokedex for {{item.national_number}}. {{item.name}}">{{item.name}}</a></td>
+            <td class="cell-icon"><a class="type-icon type-grass" href="/type/grass">{{item.type}}</a><br> <a
+                    class="type-icon type-poison" href="/type/poison">{{item.type}}</a></td>
+            <td class="cell-num"> {{item.species}}</td>
+            <td class="cell-num"> {{item.height_meters}}m ({{item.height_imperial}}) </td>
+            <td class="cell-num"> {{item.weight_grams}}kg ({{item.weight_imperial}} lbs)</td>
+            <td class="cell-num">{{item.abilities}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+    </tbody>
+</table>

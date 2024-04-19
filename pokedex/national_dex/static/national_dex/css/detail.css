@@ -1,0 +1,43 @@
+img {
+    border: 0;
+    max-width: 100%;
+    height: auto;
+    font-size: .75rem;
+    color: #a3a3a3;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+dl,
+pre {
+    margin: 0 0 1rem;
+    padding: 0;
+}
+
+.grid-col {
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.vitals-table th {
+    font-size: .875rem;
+    font-weight: normal;
+    text-align: right;
+}
+
+.vitals-table th,
+.vitals-table td {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #f0f0f0;
+    background-color: #fff;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

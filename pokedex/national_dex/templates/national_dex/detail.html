@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'national_dex/css/detail.css' %}">
+<h1>{{pokemon.name}}</h1>
+<div class="sv-tabs-panel active" id="tab-basic-6">
+    <div class="grid-col span-md-6 span-lg-4 text-center">
+        <p><a rel="lightbox" href="{% get_static_prefix %}/national_dex/large_{{pokemon.name}}.avif"
+                data-title="{{pokemon.name}} official artwork">
+                <picture>
+                    <source srcset="{% get_static_prefix %}/national_dex/full/{{pokemon.name}}.avif" width="341"
+                        height="400" type="image/avif">
+                    <img src="{% get_static_prefix %}/national_dex/large_{{pokemon.name}}.avif"
+                        alt="{{pokemon.name}} fetchpriority=" high" width="341" height="400">
+                </picture>
+            </a></p>
+        <div class="grid-col span-md-6 span-lg-4">
+            <h2>Pokédex data</h2>
+            <table class="vitals-table">
+                <tbody>
+                    <tr>
+                        <th>National №</th>
+                        <td><strong>{{ pokemon.national_number }}</strong></td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>{{pokemon.type}}</td>
+                    </tr>
+                    <tr>
+                        <th>Species</th>
+                        <td>Flame Pokémon</td>
+                    </tr>
+                    <tr>
+                        <th>Height</th>
+                        <td>{{pokemon.height_meters}}&nbsp;m ({{pokemon.height_imperial}}))</td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td>{{pokemon.weight_grams}}&nbsp;kg ({{pokemon.weight_imperial}}lbs)</td>
+                    </tr>
+                    <tr>
+                        <th>Abilities</th>
+                        <td><span class="text-muted">{{pokemon.abilities}}</span><br><small class="text-muted"><a
+                                    href="/ability/solar-power"
+                                    title="In sunshine, Sp. Atk is boosted but HP decreases.">Solar
+                                    Power</a> (hidden
+                                ability)</small><br></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
