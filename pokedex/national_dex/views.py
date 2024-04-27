@@ -5,7 +5,7 @@ from .models import Pokemon
 
 
 def index(request):
-    latest_pokemon_list = Pokemon.objects.order_by("national_number")[:5]
+    latest_pokemon_list = Pokemon.objects.order_by("national_number")
     template = loader.get_template("national_dex/index.html")
     context = {
         "query_results": latest_pokemon_list,
