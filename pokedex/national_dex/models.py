@@ -7,12 +7,12 @@ class Pokemon(models.Model):
     type = models.CharField(max_length=200)
     species = models.CharField(max_length=200, default='DEFAULT VALUE')
     height_meters = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0)
+        max_digits=10, decimal_places=2, default=0)
     height_imperial = models.CharField(max_length=200, default='DEFAULT VALUE')
     weight_grams = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0)
+        max_digits=10, decimal_places=2, default=0)
     weight_imperial = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0)
+        max_digits=10, decimal_places=2, default=0)
     abilities = models.CharField(max_length=200, default='DEFAULT VALUE')
 
     def __str__(self):

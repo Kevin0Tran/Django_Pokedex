@@ -8,7 +8,7 @@ import sqlite3
 def retrieve_json():
     pokemon = {}
     i = 1
-    while i < 101:
+    while i < 152:
         response_general = requests.get(
             f"https://pokeapi.co/api/v2/pokemon/{i}/", timeout=10)
         response_species = requests.get(
@@ -32,8 +32,8 @@ def write_to_json(json_load, name):
         json.dump(json_load, f)
 
 
-def write_to_database(json):
-    with open(json, 'r') as f:
+def write_to_database(json_file):
+    with open(json_file, 'r') as f:
         data = json.load(f)
 
     con = sqlite3.connect('pokedex/db.sqlite3', isolation_level=None)
@@ -42,29 +42,54 @@ def write_to_database(json):
         poke_type = []
         abilities = []
         name = data[pokemon_number]['name']
-        print(name)
         for num in range(len(data[pokemon_number]['type'])):
             poke_type.append(data[pokemon_number]['type']
                              [num]['type']['name'].title())
         pokemon_type = ' / '.join(poke_type)
-        # print(pokemon_type)
-        weight = data[pokemon_number]['weight']/10.0
-        print(weight)
-        height = data[pokemon_number]['height']/10.0
-        print(height)
+        weight_grams = data[pokemon_number]['weight']/10.0
+        weight_imperial = data[pokemon_number]['weight']/10 * 2.2046
+        height_meters = data[pokemon_number]['height']/10.0
+        convert = height_meters * 39.37
+        feet = round(convert//12)
+        inches = round(convert - (feet * 12))
+        height_imperial = f'{feet}ft {inches}in'
         for num in range(len(data[pokemon_number]['abilities'])):
             abilities.append(data[pokemon_number]['abilities']
                              [num]['ability']['name'].title())
         abilities = ' / '.join(abilities)
         species = data[pokemon_number]['species']
-
-        sql = f"""Insert or REPLACE INTO national_dex_pokemon
+        print(pokemon_number)
+        print(name)
+        print(pokemon_type)
+        print(species)
+        print(height_meters)
+        print(height_imperial)
+        print(weight_grams)
+        print(weight_imperial)
+        print(abilities)
+        sql = f"""Insert or REPLACE INTO national_dex_pokemon (national_number,
+                name,type,species,height_meters,height_imperial,
+                weight_grams,weight_imperial,abilities)
                         VALUES (
-                        {pokemon_number},{
-            pokemon_number},'{name}','{pokemon_type}', '{abilities}',
-        {height} ,'{species}'
-                        , {height} ,{weight}, {weight}
-                        )
+                            {pokemon_number},'{name}','{pokemon_type}',
+                            '{species}',{height_meters} ,'{height_imperial}' ,
+                            {weight_grams}, {weight_imperial},'{abilities}');
                         """
         res = cur.execute(sql)
         print(res.fetchone())
+
+
+with open(r'/Users/home/Documents/Programming/django/pokemon/pokemon.json', 'r') as f:
+    data = json.load(f)
+for pokemon_number in data:
+    img_data = requests.get(
+        f'https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/{data[pokemon_number]['name']}.avif', timeout=10).content
+    with open(f'pokedex/national_dex/static/national_dex/sprite/{data[pokemon_number]['name']}.avif', 'wb') as handler:
+        handler.write(img_data)
+    print(data[pokemon_number]['name'])
+    time.sleep(10)
+
+# pokemon = retrieve_json()
+# write_to_json(pokemon, 'pokemon')
+
+# write_to_database(r'pokemon.json')
